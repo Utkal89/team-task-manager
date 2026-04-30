@@ -5,7 +5,9 @@ import '../styles/auth.css';
 
 export default function Signup() {
   const navigate = useNavigate();
-  const { signup, loading, error, clearError } = useAuthStore();
+  import { authService } from "../services/api";
+
+const { signup } = authService;
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -18,15 +20,26 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    clearError();
-    try {
-      await signup(formData);
-      navigate('/dashboard');
-    } catch (err) {
-      // Error is handled in store
-    }
-  };
+  e.preventDefault();
+
+  console.log("Submitting form:", formData); // DEBUG
+
+  try {
+    const response = await signup(formData);
+
+    console.log("Signup Success:", response.data); // DEBUG
+
+    alert("Signup successful ✅");
+
+    // optional redirect
+    // navigate('/login');
+
+  } catch (error) {
+    console.error("Signup Error:", error); // DEBUG
+
+    alert("Signup failed ❌");
+  }
+};
 
   return (
     <div className="auth-container">
@@ -67,9 +80,9 @@ export default function Signup() {
             onChange={handleChange}
             required
           />
-          <button type="submit" disabled={loading}>
-            {loading ? 'Creating account...' : 'Sign Up'}
-          </button>
+          <button type="submit">
+  Sign Up
+</button>
         </form>
         <p>
           Already have an account? <a href="/login">Login</a>
