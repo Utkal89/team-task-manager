@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../context/authStore';
 import '../styles/auth.css';
-
+console.log("Signup component loaded");
 export default function Signup() {
   const navigate = useNavigate();
   import { authService } from "../services/api";
-
+<h1>🚀 TEST DEPLOY</h1>
 const { signup } = authService;
   const [formData, setFormData] = useState({
     email: '',
@@ -80,7 +80,12 @@ const { signup } = authService;
             onChange={handleChange}
             required
           />
-          <button type="submit">
+          <button
+  type="button"
+  onClick={() => {
+    console.log("BUTTON CLICKED");
+  }}
+>
   Sign Up
 </button>
         </form>
