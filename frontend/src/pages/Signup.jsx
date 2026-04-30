@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import { authService } from "../services/api";
 import { useAuthStore } from '../context/authStore';
 import '../styles/auth.css';
 console.log("Signup component loaded");
 export default function Signup() {
   const navigate = useNavigate();
-  import { authService } from "../services/api";
-<h1>🚀 TEST DEPLOY</h1>
+  
 const { signup } = authService;
   const [formData, setFormData] = useState({
     email: '',
